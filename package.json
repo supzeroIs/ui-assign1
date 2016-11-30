@@ -1,0 +1,16 @@
+{
+  "name": "ui-assign1",
+  "version": "1.0.0",
+  "description": "UI Developer Assignment v1.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "n/a"
+  },
+  "keywords": [
+    "ui",
+    "assignment",
+    "tech-world"
+  ],
+  "author": "@supzero__",
+  "license": "MIT"
+}
