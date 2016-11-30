@@ -1,0 +1,16 @@
+{
+"surveys":[
+    {
+      "name"        : "First Survey",
+      "percent"     : 5,
+      "questions"   : 10,
+      "quest"       : []
+    },
+    {
+      "name"        : "IT survey ",
+      "percent"     : 55,
+      "questions"   : 11,
+      "quest"       : []
+    }
+]
+}

@@ -1,0 +1,6 @@
+.ui.menu {
+  border-radius: 0px;
+}
+.ui.menu.inverted .content .sub.header {
+  color: white;
+}

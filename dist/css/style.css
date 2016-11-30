@@ -1,0 +1,70 @@
+/*
+* # Ui-Assign - v1
+*
+* @auther: @supzero__
+*/
+/*-------------------
+Brand Colors
+--------------------*/
+/* overwrite */
+.ui.menu {
+  border-radius: 0px;
+}
+.ui.menu.inverted .content .sub.header {
+  color: white;
+}
+/* global vars */
+#breadcrumb {
+  margin: 0 0;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  background-color: #f3393d;
+}
+#breadcrumb * {
+  color: #ffffff;
+}
+#breadcrumb a {
+  color: rgba(255, 255, 255, 0.7);
+}
+.ui.label + .ui.label {
+  margin-top: 5px;
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes disappear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.fade {
+  transition: 500ms linear all;
+  -webkit-transition: 500ms linear all;
+}
+.fade.ng-enter {
+  animation: 2s appear;
+}
+.fade.ng-leave {
+  animation: 1s disappear;
+}
+/* style */
+.pusher.site .right.page {
+  margin-left: 260px;
+}
+.vertical.left.fixed.menu {
+  width: 260px;
+}
+/* #/home */
+/*-------------------
+HomePage
+#/home
+--------------------*/

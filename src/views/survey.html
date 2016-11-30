@@ -1,0 +1,40 @@
+<form class="ui form" name="surveyForm" ng-submit="addSurvey(surveyForm)" novalidate>
+  <div class="field">
+    <label>Add New Survey</label>
+    <div class="ui action input">
+      <input type="text" require ng-model="surveyForm.surveyTitle"  ng-required="true" ng-minlength="5" placeholder="survey name">
+      <button type="submit" ng-disabled="surveyForm.$invalid" class="ui teal right labeled icon button">
+        <i class="add icon"></i>
+        Add
+      </button>
+    </div>
+    <small ng-show="surveyForm.$invalid" class="ui meta red">Survey Name is required</small>
+  </div>
+
+</form>
+<div class="ui divider"></div>
+<div class="ui two column grid" id="survey-avail">
+  <div class="column fade" ng-repeat="survey in totalSurvey">
+
+        <div class="ui segments">
+          <div class="ui red inverted segment">
+
+            <p>{{survey.name}}</p>
+          </div>
+          <div class="ui secondary segment">
+            <div class="ui active progress red">
+              <div class="bar"  style="width:{{survey.percent}}%;">
+                <div class="progress" >{{survey.percent}}%</div>
+              </div>
+              <div class="label">Questions</div>
+            </div>
+            <div class="ui divider"></div>
+            <div class="ui item">
+              <a href="#" class="ui basic button"><i class="tasks icon"></i> Questions</a>
+              <a href="#" class="ui basic button"><i class="write icon"></i> Edit</a>
+              <a href class="ui basic button" ng-click="removeSurvey($index)"><i class="remove icon"></i> Delete</a>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>

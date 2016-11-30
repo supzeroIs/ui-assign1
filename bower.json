@@ -1,0 +1,25 @@
+{
+  "name": "eatup",
+  "description": "inventads Eatup Project",
+  "main": "index.js",
+  "authors": [
+    "@supzero__"
+  ],
+  "license": "GPL v3",
+  "keywords": [
+    "n.a"
+  ],
+  "homepage": "",
+  "private": true,
+  "directory": "dist/bower_components/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "^1.5.9"
+  }
+}
