@@ -1,0 +1,127 @@
+
+<form class="ui large form" name="questionForm" ng-submit="addQuestion(questionForm)" novalidate>
+
+  <div class="ui segment" id="quest-survey">
+    <div class="two fields">
+
+      <div class="field" ng-class="{'error': questionForm.surveySID.$invalid && !questionForm.surveySID.$pristine}">
+        <label>Assign Question to </label>
+        <select class="ui" name="surveySID" id="surveySID" class="ui "
+        required ng-model="questModel.surveySID"  ng-required="true"
+        placeholder="survey name">
+        <option ng-selected="item.value == _SID"
+        ng-repeat="item in surveyArray" value="{{item.value}}">
+        {{item.name}}
+      </option>
+    </select>
+    <small ng-messages="questionForm.surveySID.$error">
+      <div ng-message="required">Please select a survey</div>
+    </small>
+  </div>
+
+</div>
+</div>
+
+<div class="ui segment" id="quest-entery">
+
+  <div class="field"  ng-class="{
+    'error': questionForm.questTitle.$invalid && !questionForm.questTitle.$pristine
+  }">
+  <label>Enter your question</label>
+  <div class="ui large input">
+    <input type="text"class="ui input" name="questTitle" required
+    maxlength="100" minlength="5" placeholder="questsion..."
+    ng-model="questModel.questTitle"
+    ng-required="true">
+  </div>
+  <small ng-messages="questionForm.questTitle.$error">
+    <div ng-message="required">Please type a proper question name</div>
+    <div ng-message-exp="['minlength', 'maxlength']">
+      Your email must be between 5 and 100 characters long
+    </div>
+  </small>
+</div>
+
+<div class="ui inline three fields">
+  <div class="field">
+    <div class="ui radio">
+      <input type="radio" ng-checked="" id="qestModel1" ng-model="questModel.questType" value="1"
+      name="questType" tabindex="0" class="hidden">
+      <label for="qestModel1">Single Selections (radio)</label>
+    </div>
+  </div>
+  <div class="field">
+    <div class="ui radio">
+      <input type="radio" id="qestModel2" ng-model="questModel.questType" value="2"
+      name="questType" tabindex="0" class="hidden">
+      <label for="qestModel2">Multi Selecions (checkbox)</label>
+    </div>
+  </div>
+  <div class="inline field"  ng-class="{
+    'error': questionForm.questScore.$invalid && !questionForm.questScore.$pristine
+  }">
+  <label>Question Score</label>
+  <select name="questScore" id="questScore"  require ng-model="questModel.questScore"
+  ng-required="true" ng-minlength="1" placeholder="survey name" ng-init="questModel.questScore='1'">
+  <option value="{{si}}" ng-repeat="si in 50 | range">{{si}}</option>
+</select>
+</div>
+</div>
+
+</div>
+
+<div class="ui segment" id="quest-answers">
+
+
+  <div class="two fields">
+    <div class="field">
+      <label>Add <span ng-show"questModel.answerGroup">New</span> Answer</label>
+      <div class="ui action input">
+        <input type="text" name="answers" ng-model="questModel.answers"
+        ng-minlength="5" placeholder="answer...">
+        <button type="button"
+        ng-click="addAnswer()"
+        ng-disabled="!questModel.answers || questModel.answerGroup.length >= options.maxAnswers"
+        class="ui teal right labeled icon button">
+        <i class="add icon"></i>
+        Add
+      </button>
+    </div>
+    <small ng-show="questionForm.answers.$invalid" class="ui meta teal">Answers is required</small>
+    <small ng-show="!questionForm.answers.$pristine && questModel.answerGroup.length < options.minAnswers">you need at least {{options.minAnswers}} answers</small>
+  </div>
+</div>
+<div class="ui grid">
+  <div class="row">
+    <div class="eleven wide column">
+
+      <div class="field">
+        <div class="ui attached segment fade" ng-repeat="answer in questModel.answerGroup">
+          {{answer.text}}
+          <button ng-click="removeAnswer($index)" class="circular tiny right floated ui icon red button">
+            <i class="icon trash"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<button type="submit" ng-disabled="questionForm.$invalid || questModel.answerGroup.length < options.minAnswers"
+class="ui large icon green button">
+<i class="icon add"></i> Add This Question
+</button>
+
+</form>
+{{questModel}}
+<script type="text/javascript">
+  $('.ui.radio.checkbox')
+  .checkbox()
+  ;
+  $('.ui.dropdown')
+  .dropdown()
+  ;
+  $('#questScore').val('1');
+</script>

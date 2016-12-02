@@ -51,10 +51,14 @@ Brand Colors
   -webkit-transition: 500ms linear all;
 }
 .fade.ng-enter {
-  animation: 2s appear;
+  animation: 500ms appear;
 }
 .fade.ng-leave {
-  animation: 1s disappear;
+  animation: 500ms disappear;
+}
+.segment .floated.right {
+  float: right;
+  margin-top: -5px;
 }
 /* style */
 .pusher.site .right.page {
