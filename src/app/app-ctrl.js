@@ -56,7 +56,7 @@ UIASSIGN1.controller('questionsCTRL', function($scope , $rootScope , $state, $st
 			// #dummy controller
       $rootScope.sectorName         = 'Questions';
       $scope._SID                   = parseInt($stateParams.id);
-
+      $scope._questions             = [];
       $scope.options                = {
         minAnswers  : 2,
         maxAnswers  : 5
@@ -64,11 +64,13 @@ UIASSIGN1.controller('questionsCTRL', function($scope , $rootScope , $state, $st
 
       $scope.questModel             = {
         answerGroup : [],
-        questScore  : 5,
+        questScore  : 1,
         surveySID   : $scope._SID,
         questType   : 1,
       };
 
+
+      /* fetch data */
       $http.get("api/survey/survey.json")
       .then(function(response) {
         var surveyArray = response.data;
@@ -81,8 +83,23 @@ UIASSIGN1.controller('questionsCTRL', function($scope , $rootScope , $state, $st
 
       });
 
+      if ($scope._SID > 0 || parseInt($scope.questModel.surveySID) > 0){
+        $http.get("api/questions/"+ $scope.questModel.surveySID +".json")
+        .then(function(response) {
+          $scope._questions = response.data;
+        });
+      }
+
+      $scope.changeSurvey = function (surveyID){
+        $http.get("api/questions/"+ surveyID +".json")
+        .then(function(response) {
+          $scope._questions = response.data;
+        });
+      }
+      /* end fetch data */
 
 
+      // do actions
       $scope.addAnswer = function(){
         console.log($scope.questModel);
           var inArray = {
@@ -97,6 +114,19 @@ UIASSIGN1.controller('questionsCTRL', function($scope , $rootScope , $state, $st
       }
 
       $scope.addQuestion = function(formValid){
-        
+          if (formValid.$valid == true){
+            $scope._questions.push($scope.questModel);
+            $scope.questionForm.$setPristine();
+            $scope.questModel = {
+              questScore: "",
+              questType: 1,
+              questTitle : "",
+              answerGroup :[]
+            };
+          }
+      }
+
+      $scope.removeQestion = function (qIndex){
+        $scope._questions.splice(qIndex, 1);
       }
 });

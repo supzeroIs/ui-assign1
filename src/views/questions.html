@@ -8,7 +8,7 @@
         <label>Assign Question to </label>
         <select class="ui" name="surveySID" id="surveySID" class="ui "
         required ng-model="questModel.surveySID"  ng-required="true"
-        placeholder="survey name">
+        placeholder="survey name" ng-change="changeSurvey(questModel.surveySID)">
         <option ng-selected="item.value == _SID"
         ng-repeat="item in surveyArray" value="{{item.value}}">
         {{item.name}}
@@ -115,9 +115,58 @@ class="ui large icon green button">
 </button>
 
 </form>
-{{questModel}}
+
+
+<h2 class="ui red header">
+  Quetions Preview
+  <div class="sub header">view full rendered version of this survey questions.</div>
+</h2>
+
+
+<div class="ui items" id="quetions-display">
+
+<div class="ui inverted segment fade" ng-repeat="q in _questions" id="quest-answers" ng-init="qID = $index">
+  <h3 class="ui red header">
+    {{q.questTitle}} ({{q.questScore}})
+
+  </h3>
+  <p>
+    <button ng-click="removeQestion($index)" class="circular tiny right floated ui icon red button">
+      <i class="icon trash"></i>
+    </button>
+  <div class="field" ng-if="q.questType == 1" ng-repeat="a in q.answerGroup">
+    <div class="ui radio">
+      <input type="radio" ng-checked="" id="q_{{qID}}_{{$index}}" value="1"
+      name="answer[q_{{qID}}]" tabindex="0" class="hidden">
+      <label for="q_{{qID}}_{{$index}}">{{a.text}}</label>
+    </div>
+  </div>
+  <div class="field" ng-if="q.questType == 2" ng-repeat="a in q.answerGroup">
+    <div class="ui">
+      <input type="checkbox" ng-checked="" id="q_{{qID}}_{{$index}}" value="1"
+      name="answer[q_{{qID}}]" tabindex="0" class="hidden">
+      <label for="q_{{qID}}_{{$index}}">{{a.text}}</label>
+    </div>
+  </div>
+</p>
+</div>
+
+</div>
+
+<button ng-click="" class="huge right floated ui icon green button">
+   <i class="icon save"></i>
+  Save This Survey
+</button>
+
+<!-- <pre>
+{{questModel | json}}
+{{_questions | json}}
+</pre> -->
 <script type="text/javascript">
   $('.ui.radio.checkbox')
+  .checkbox()
+  ;
+  $('.ui.checkbox.checkbox')
   .checkbox()
   ;
   $('.ui.dropdown')
