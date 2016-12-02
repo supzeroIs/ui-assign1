@@ -73,13 +73,17 @@ UIASSIGN1.controller('questionsCTRL', function($scope , $rootScope , $state, $st
       /* fetch data */
       $http.get("api/survey/survey.json")
       .then(function(response) {
-        var surveyArray = response.data;
+        var totalSurv = response.data;
         $scope.surveyArray = [];
-        for (var i = 0; i < surveyArray.length; i++) {
-          var thisItem  = surveyArray[i];
-          var thisElm   = {name:thisItem.name,value:parseInt(thisItem._id)};
-          $scope.surveyArray.push(thisElm)
+        for (var i = 0; i < totalSurv.length; i++) {
+          thisItem = totalSurv[i];
+          var plusItem = {
+            id    : thisItem._id,
+            value : thisItem.name
+          };
+          $scope.surveyArray.push(plusItem);
         }
+        console.log($scope.surveyArray);
 
       });
 

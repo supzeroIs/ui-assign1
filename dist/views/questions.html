@@ -6,13 +6,15 @@
 
       <div class="field" ng-class="{'error': questionForm.surveySID.$invalid && !questionForm.surveySID.$pristine}">
         <label>Assign Question to </label>
-        <select class="ui" name="surveySID" id="surveySID" class="ui "
+        <select  name="surveySID" id="surveySID"
         required ng-model="questModel.surveySID"  ng-required="true"
-        placeholder="survey name" ng-change="changeSurvey(questModel.surveySID)">
-        <option ng-selected="item.value == _SID"
-        ng-repeat="item in surveyArray" value="{{item.value}}">
+        placeholder="survey name" ng-change="changeSurvey(questModel.surveySID)" ng-init="questModel.surveySID = _SID"
+        ng-options="value.id as value.value for value in surveyArray">
+<option value="">--Select--</option>
+        <!-- <option ng-selected="item._id == _SID"
+        ng-repeat="item in surveyArray" value="{{item._id}}">
         {{item.name}}
-      </option>
+      </option> -->
     </select>
     <small ng-messages="questionForm.surveySID.$error">
       <div ng-message="required">Please select a survey</div>
@@ -169,8 +171,6 @@ class="ui large icon green button">
   $('.ui.checkbox.checkbox')
   .checkbox()
   ;
-  $('.ui.dropdown')
-  .dropdown()
-  ;
+
   $('#questScore').val('1');
 </script>
