@@ -30,6 +30,13 @@ UIASSIGN1.config(function($stateProvider, $urlRouterProvider) {
     templateUrl : 'views/questions.html',
     controller  : 'questionsCTRL',
   });
+  $stateProvider
+  .state('target', {
+    url: '/target/:id',
+    templateUrl : 'views/target.html',
+    controller  : 'targetCTRL',
+  });
+
   $urlRouterProvider.otherwise('/home');
 
 }).run(function ($rootScope, $location) {

@@ -9,7 +9,7 @@
 Brand Colors
 --------------------*/
 @import "branding";
- 
+
 
 /* overwrite */
 @import "overwrites";
@@ -29,7 +29,21 @@ Brand Colors
   width: 260px;
 }
 
-
+.button{
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+  &.fixed {
+    position: fixed;
+  }
+  &.bottom {
+    bottom:5px;
+  }
+  &.right {
+    right:5px;
+  }
+  &.left{
+    left:5px;
+  }
+}
 
 /* #/home */
 @import "home";

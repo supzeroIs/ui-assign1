@@ -1,0 +1,21 @@
+<div class="ui segment"><form class="ui form" name="targetForm" ng-submit="assignSurvey(targetForm)" novalidate>
+
+<div class="ui two fields">
+  <div class="field" ng-class="{'error': targetForm.surveySID.$invalid && !targetForm.surveySID.$pristine}">
+    <label>Assign Question to </label>
+    <select class="ui" name="surveySID" id="surveySID" class="ui "
+    required ng-model="taragetMod.surveySID"  ng-required="true"
+    placeholder="survey name" ng-change="changeSurvey(taragetMod.surveySID)">
+    <option ng-selected="item.value == _SID"
+    ng-repeat="item in surveyArray" value="{{item.value}}">
+    {{item.name}}
+  </option>
+</select>
+<small ng-messages="targetForm.surveySID.$error">
+  <div ng-message="required">Please select a survey</div>
+</small>
+</div>
+
+</div>
+</form>
+</div>

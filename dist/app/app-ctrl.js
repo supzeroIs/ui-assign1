@@ -39,7 +39,7 @@ UIASSIGN1.controller('surveyCTRL', function($scope , $rootScope , $http  ) {
                   "questions"   : Math.floor((Math.random() * 20) + 1),
                   "quest"       : []
                 };
-            $scope.totalSurvey.push(newSurvey);
+            $scope.totalSurvey.unshift(newSurvey);
             // reset form
             $scope.surveyIO = {};
           }
@@ -54,7 +54,7 @@ UIASSIGN1.controller('surveyCTRL', function($scope , $rootScope , $http  ) {
 
 UIASSIGN1.controller('questionsCTRL', function($scope , $rootScope , $state, $stateParams , $http ) {
 			// #dummy controller
-      $rootScope.sectorName         = 'Questions';
+      $rootScope.sectorName         = 'Manage Questions';
       $scope._SID                   = parseInt($stateParams.id);
       $scope._questions             = [];
       $scope.options                = {
@@ -129,4 +129,26 @@ UIASSIGN1.controller('questionsCTRL', function($scope , $rootScope , $state, $st
       $scope.removeQestion = function (qIndex){
         $scope._questions.splice(qIndex, 1);
       }
+});
+
+
+UIASSIGN1.controller('targetCTRL', function($scope , $rootScope , $state, $stateParams , $http ) {
+  $rootScope.sectorName         = 'Manage Target Section';
+  $scope._SID                   = parseInt($stateParams.id);
+  $scope.taragetMod             = {
+    surveySID : $scope._SID,
+  };
+  /* fetch data */
+  $http.get("api/survey/survey.json")
+  .then(function(response) {
+    var surveyArray = response.data;
+    $scope.surveyArray = [];
+    for (var i = 0; i < surveyArray.length; i++) {
+      var thisItem  = surveyArray[i];
+      var thisElm   = {name:thisItem.name,value:parseInt(thisItem._id)};
+      $scope.surveyArray.push(thisElm)
+    }
+
+  });
+
 });

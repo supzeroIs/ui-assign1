@@ -124,7 +124,7 @@ class="ui large icon green button">
 
 
 <div class="ui items" id="quetions-display">
-
+<span ng-show="!_questions.length">No questions added yet!</span>
 <div class="ui inverted segment fade" ng-repeat="q in _questions" id="quest-answers" ng-init="qID = $index">
   <h3 class="ui red header">
     {{q.questTitle}} ({{q.questScore}})
@@ -152,8 +152,8 @@ class="ui large icon green button">
 </div>
 
 </div>
-
-<button ng-click="" class="huge right floated ui icon green button">
+<p><br></p>
+<button ng-click="" class="huge right fixed bottom  ui icon green button">
    <i class="icon save"></i>
   Save This Survey
 </button>
