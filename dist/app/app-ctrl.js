@@ -210,7 +210,7 @@ UIASSIGN1.controller('fillCTRL', function($scope , $rootScope , $state, $statePa
 
 
   $scope.totalScore = [];
-  for (var i = 0; i < 51; i++) {
+  for (var i = 0; i < 11; i++) {
     var plusItem = {
       id    : i,
       value : i

@@ -1,0 +1,80 @@
+
+<form class="ui large form" name="questionForm" ng-submit="addQuestion(questionForm)" novalidate>
+
+  <div class="ui segment" id="quest-survey">
+    <div class="two fields">
+
+      <div class="field" ng-class="{'error': questionForm.surveySID.$invalid && !questionForm.surveySID.$pristine}">
+        <label>Select survey </label>
+        <select  name="surveySID" id="surveySID"
+        required ng-model="questModel.surveySID"  ng-required="true"
+        placeholder="survey name" ng-change="changeSurvey(questModel.surveySID)" ng-init="questModel.surveySID = _SID"
+        ng-options="value.id as value.value for value in surveyArray">
+        <option value="">--Select--</option>
+      </select>
+      <small ng-messages="questionForm.surveySID.$error">
+        <div ng-message="required">Please select a survey</div>
+      </small>
+    </div>
+
+  </div>
+</div>
+</form>
+
+
+<div class="ui segment basic"><div class="ui divided items" id="quetions-display">
+  <span ng-show="!_questions.length">No survey selected yet!</span>
+  <div class="item fade" ng-repeat="q in _questions" id="quest-answers" ng-init="qID = $index">
+    <div class="content">
+
+    <h3 class="ui header disaplyblock">
+      {{q.questTitle}}
+<span class="ui small right floated form">
+  <div class="inline field">
+         <label>Score</label>
+         <select name="questScore" id="questScore"  required ng-model="questModel.questionGroup[$index].questScore"
+         ng-required="true" ng-minlength="1"
+           ng-options="value.id as value.value for value in totalScore" ng-init="questModel.questionGroup[$index].questScore = q.questScore">
+           <option value="">0</option>
+       </select>
+       </div></span>
+    </h3>
+<p>    <div class="ui form">
+
+
+      <div class="field" ng-if="q.questType == 1" ng-repeat="a in q.answerGroup">
+        <div class="ui radio">
+          <input type="radio" ng-checked="" id="q_{{qID}}_{{$index}}" value="1"
+          name="answer[q_{{qID}}]" tabindex="0" class="hidden">
+          <label for="q_{{qID}}_{{$index}}">{{a.text}}</label>
+        </div>
+      </div>
+
+      <div class="field" ng-if="q.questType == 2" ng-repeat="a in q.answerGroup">
+        <div class="ui">
+          <input type="checkbox" ng-checked="" id="q_{{qID}}_{{$index}}" value="1"
+          name="answer[q_{{qID}}]" tabindex="0" class="hidden">
+          <label for="q_{{qID}}_{{$index}}">{{a.text}}</label>
+        </div>
+      </div>
+
+    </div></p>
+  </div>
+
+</div>
+</div></div>
+<p><br></p>
+
+
+<!-- <pre>
+{{questModel | json}}
+{{_questions | json}}
+</pre> -->
+<script type="text/javascript">
+  $('.ui.radio.checkbox')
+  .checkbox()
+  ;
+  $('.ui.checkbox.checkbox')
+  .checkbox()
+  ;
+</script>

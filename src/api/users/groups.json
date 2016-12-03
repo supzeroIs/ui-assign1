@@ -1,0 +1,26 @@
+[
+  {
+    "_id": 1,
+    "name": "IT department"
+  },
+  {
+    "_id": 2,
+    "name": "HR department"
+  },
+  {
+    "_id": 3,
+    "name": "QI department"
+  },
+  {
+    "_id": 4,
+    "name": "UX department"
+  },
+  {
+    "_id": 5,
+    "name": "Managment department"
+  },
+  {
+    "_id": 6,
+    "name": "Accounting department"
+  }
+]
