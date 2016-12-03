@@ -60,6 +60,9 @@ Brand Colors
   float: right;
   margin-top: -5px;
 }
+.disaplyblock {
+  display: block !important;
+}
 /* style */
 .pusher.site .right.page {
   margin-left: 260px;
@@ -81,6 +84,22 @@ Brand Colors
 }
 .button.left {
   left: 5px;
+}
+.popup .ui.items > .item .content .ui.header {
+  font-size: 14px;
+}
+.popup .ui.items > .item .content .description {
+  margin-top: 0px;
+  font-size: 11px;
+}
+.popup .ui.items > .item > .image > img {
+  border-radius: 50%;
+}
+.ui.menu .dropdown.item > .inverted.menu,
+.ui.menu .dropdown.item.menu {
+  margin-top: 0px !important;
+  font-size: 14px;
+  border-radius: 0px !important;
 }
 /* #/home */
 /*-------------------

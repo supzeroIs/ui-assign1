@@ -36,6 +36,12 @@ UIASSIGN1.config(function($stateProvider, $urlRouterProvider) {
     templateUrl : 'views/target.html',
     controller  : 'targetCTRL',
   });
+  $stateProvider
+  .state('fill', {
+    url: '/fill/:id',
+    templateUrl : 'views/fill.html',
+    controller  : 'fillCTRL',
+  });
 
   $urlRouterProvider.otherwise('/home');
 
@@ -44,9 +50,6 @@ UIASSIGN1.config(function($stateProvider, $urlRouterProvider) {
     globalJS(toState.name);
   });
 });
-
-
-
 
 
 

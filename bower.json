@@ -20,6 +20,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-animate": "^1.5.9"
+    "angular-animate": "^1.5.9",
+    "semantic-ui-calendar": "^0.0.4"
   }
 }

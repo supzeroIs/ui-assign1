@@ -44,6 +44,39 @@ Brand Colors
     left:5px;
   }
 }
+.popup {
+  .ui.items {
+    &>.item {
+      .content {
+        .ui.header {
+          font-size: 14px;
+        }
+        .description{
+          margin-top: 0px;
+          font-size: 11px;
+        }
+      }
+      &>.image{
+        &>img {
+          border-radius:50%;
+        }
+      }
+    }
+  }
+}
+.ui.menu {
+.dropdown.item {
+  &>.inverted.menu , &.menu{
+    margin-top: 0px !important;
+    font-size:14px;
+    border-radius: 0px !important;
+    // background-color: #474d54;
+    &>.item {
+      // color:white !important;
+    }
+  }
+}
+}
 
 /* #/home */
 @import "home";

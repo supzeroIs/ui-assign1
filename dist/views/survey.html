@@ -36,7 +36,7 @@
             <div class="ui item">
               <a ui-sref="questions({id:survey._id})" class="ui basic button">
                 <i class="tasks icon"></i> Questions</a>
-              <a href="#" class="ui basic button"><i class="write icon"></i> Edit</a>
+              <a ui-sref="target({id:survey._id})" class="ui basic button"><i class="write icon"></i> Edit</a>
               <a href class="ui basic approve button" ng-show="totalSurvey.length > 1"
                 ng-click="removeSurvey($index)"><i class="remove icon"></i> Delete</a>
             </div>

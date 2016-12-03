@@ -1,21 +1,120 @@
-<div class="ui segment"><form class="ui form" name="targetForm" ng-submit="assignSurvey(targetForm)" novalidate>
+<form class="ui form"  ng-controller="targetCTRL" name="targetForm" ng-submit="assignSurvey(targetForm)" novalidate>
+    <div class="ui segment" id="target-survey">
+      <div class="two fields">
 
-<div class="ui two fields">
-  <div class="field" ng-class="{'error': targetForm.surveySID.$invalid && !targetForm.surveySID.$pristine}">
-    <label>Assign Question to </label>
-    <select class="ui" name="surveySID" id="surveySID" class="ui "
-    required ng-model="taragetMod.surveySID"  ng-required="true"
-    placeholder="survey name" ng-change="changeSurvey(taragetMod.surveySID)">
-    <option ng-selected="item.value == _SID"
-    ng-repeat="item in surveyArray" value="{{item.value}}">
-    {{item.name}}
-  </option>
-</select>
-<small ng-messages="targetForm.surveySID.$error">
-  <div ng-message="required">Please select a survey</div>
-</small>
-</div>
+        <div class="field" ng-class="{'error': targetForm.surveySID.$invalid && !targetForm.surveySID.$pristine}">
+          <label>Select survey </label>
+          <select  name="surveySID" id="surveySID"
+          required ng-model="targetMod.surveySID"  ng-required="true"
+          placeholder="survey name" ng-change="changeSurvey(targetMod.surveySID)" ng-init="targetMod.surveySID = _SID"
+          ng-options="value.id as value.value for value in surveyArray">
+          <option value="">--Select--</option>
+        </select>
+        <small ng-messages="targetForm.surveySID.$error">
+          <div ng-message="required">Please select a survey</div>
+        </small>
+      </div>
 
-</div>
+      <div class="field" ng-class="{'error': targetForm.usergroup.$invalid && !targetForm.usergroup.$pristine}">
+        <label>Select user group </label>
+        <select name="usergroup" id="usergroup"
+        required ng-model="targetMod.usergroup"  ng-required="true"
+        placeholder="group" ng-change="changeSurvey(targetMod.usergroup)"
+        ng-options="value.id as value.value for value in userGroups">
+        <option value="">--Select--</option>
+      </select>
+      <small ng-messages="targetForm.usergroup.$error">
+        <div ng-message="required">Please select a group</div>
+      </small>
+    </div>
+
+    </div>
+  </div>
+  <div class="ui segment">
+    <div class="two fields">
+      <div class="field">
+        <label>Start date</label>
+        <div class="ui calendar" id="rangestart">
+          <div class="ui input left icon">
+            <i class="calendar icon"></i>
+            <input name="dateStart"
+            ng-model="targetMod.dateStart" id="rangestart" type="text" placeholder="Start">
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>End date</label>
+        <div class="ui calendar" id="rangeend">
+          <div class="ui input left icon">
+            <i class="calendar icon"></i>
+            <input name="dateEnd" ng-model="targetMod.dateEnd" id="rangeend" type="text" placeholder="End">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui segment">
+    <br>
+    <div class="inline fields">
+    <label>Score targeted range</label>
+    <div class="field">
+      <div class="ui checkbox checkbox">
+        <input type="checkbox" name="score" tabindex="0" class="hidden">
+        <label>bad</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui checkbox checkbox">
+        <input type="checkbox" name="score" tabindex="0" class="hidden">
+        <label>good</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui checkbox checkbox">
+        <input type="checkbox" name="score" tabindex="0" class="hidden">
+        <label>very good</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui checkbox checkbox">
+        <input type="checkbox" name="score" tabindex="0" class="hidden">
+        <label>excellant</label>
+      </div>
+    </div>
+  </div>
+  </div>
+  <button class="huge right fixed bottom  ui icon green button">
+    <i class="icon save"></i>
+    Submit Survey
+  </button>
 </form>
-</div>
+<pre>
+{{targetMod}}</pre>
+
+<script type="text/javascript">
+  $('#rangestart').calendar({
+  type: 'date',
+  endCalendar: $('#rangeend'),
+  onChange: function (date, text) {
+    var scope = angular.element(document.getElementById("rangestart")).scope();
+        scope.$apply(function() {
+        scope.targetMod.dateStart = date;
+    });
+    }
+});
+$('#rangeend').calendar({
+  type: 'date',
+  startCalendar: $('#rangestart'),
+  onChange: function (date, text) {
+    var scope = angular.element(document.getElementById("rangeend")).scope();
+        scope.$apply(function() {
+        scope.targetMod.dateEnd = date;
+    });
+    }
+});
+$('.ui.checkbox')
+  .checkbox()
+;
+
+
+</script>

@@ -5,7 +5,7 @@ UIASSIGN1.controller('mainCTRL', function($scope , $rootScope , $http ) {
 			// #dummy controller
       $rootScope.sectorName = 'Home';
 
-      $http.get("api/survey/users.json")
+      $rootScope.$RequestServ = $http.get("api/survey/users.json")
       .then(function(response) {
           $scope.totalusers = response.data;
       });
@@ -22,7 +22,7 @@ UIASSIGN1.controller('surveyCTRL', function($scope , $rootScope , $http  ) {
         surveyTitle : "",
       };
 
-      $http.get("api/survey/survey.json")
+      $rootScope.$RequestServ = $http.get("api/survey/survey.json")
       .then(function(response) {
           $scope.totalSurvey = response.data;
       });
@@ -71,7 +71,7 @@ UIASSIGN1.controller('questionsCTRL', function($scope , $rootScope , $state, $st
 
 
       /* fetch data */
-      $http.get("api/survey/survey.json")
+      $rootScope.$RequestServ = $http.get("api/survey/survey.json")
       .then(function(response) {
         var totalSurv = response.data;
         $scope.surveyArray = [];
@@ -83,19 +83,17 @@ UIASSIGN1.controller('questionsCTRL', function($scope , $rootScope , $state, $st
           };
           $scope.surveyArray.push(plusItem);
         }
-        console.log($scope.surveyArray);
-
       });
 
       if ($scope._SID > 0 || parseInt($scope.questModel.surveySID) > 0){
-        $http.get("api/questions/"+ $scope.questModel.surveySID +".json")
+        $rootScope.$RequestServ = $http.get("api/questions/"+ $scope.questModel.surveySID +".json")
         .then(function(response) {
           $scope._questions = response.data;
         });
       }
 
       $scope.changeSurvey = function (surveyID){
-        $http.get("api/questions/"+ surveyID +".json")
+        $rootScope.$RequestServ = $http.get("api/questions/"+ surveyID +".json")
         .then(function(response) {
           $scope._questions = response.data;
         });
@@ -105,7 +103,6 @@ UIASSIGN1.controller('questionsCTRL', function($scope , $rootScope , $state, $st
 
       // do actions
       $scope.addAnswer = function(){
-        console.log($scope.questModel);
           var inArray = {
             text : $scope.questModel.answers
           };
@@ -139,20 +136,87 @@ UIASSIGN1.controller('questionsCTRL', function($scope , $rootScope , $state, $st
 UIASSIGN1.controller('targetCTRL', function($scope , $rootScope , $state, $stateParams , $http ) {
   $rootScope.sectorName         = 'Manage Target Section';
   $scope._SID                   = parseInt($stateParams.id);
-  $scope.taragetMod             = {
-    surveySID : $scope._SID,
-  };
-  /* fetch data */
-  $http.get("api/survey/survey.json")
-  .then(function(response) {
-    var surveyArray = response.data;
-    $scope.surveyArray = [];
-    for (var i = 0; i < surveyArray.length; i++) {
-      var thisItem  = surveyArray[i];
-      var thisElm   = {name:thisItem.name,value:parseInt(thisItem._id)};
-      $scope.surveyArray.push(thisElm)
-    }
 
+
+  /* fetch data */
+  $rootScope.$RequestServ = $http.get("api/survey/survey.json")
+  .then(function(response) {
+    var totalSurv = response.data;
+    $scope.surveyArray = [];
+    for (var i = 0; i < totalSurv.length; i++) {
+      thisItem = totalSurv[i];
+      var plusItem = {
+        id    : thisItem._id,
+        value : thisItem.name
+      };
+      $scope.surveyArray.push(plusItem);
+    }
   });
+
+  $rootScope.$RequestServ = $http.get("api/users/groups.json")
+  .then(function(response) {
+    var totalGroups = response.data;
+    $scope.userGroups = [];
+    for (var i = 0; i < totalGroups.length; i++) {
+      thisItem = totalGroups[i];
+      var plusItem = {
+        id    : thisItem._id,
+        value : thisItem.name
+      };
+      $scope.userGroups.push(plusItem);
+    }
+  });
+
+
+});
+
+
+
+
+UIASSIGN1.controller('fillCTRL', function($scope , $rootScope , $state, $stateParams , $http ) {
+
+  $rootScope.sectorName         = 'Manage fill survey';
+  $scope._SID                   = parseInt($stateParams.id);
+  $scope.questModel             = {
+    questionGroup : []
+  };
+  $rootScope.$RequestServ = $http.get("api/survey/survey.json")
+  .then(function(response) {
+    var totalSurv = response.data;
+    $scope.surveyArray = [];
+    for (var i = 0; i < totalSurv.length; i++) {
+      thisItem = totalSurv[i];
+      var plusItem = {
+        id    : thisItem._id,
+        value : thisItem.name
+      };
+      $scope.surveyArray.push(plusItem);
+    }
+  });
+
+  if ($scope._SID > 0 || parseInt($scope.questModel.surveySID) > 0){
+    $rootScope.$RequestServ = $http.get("api/questions/"+ $scope.questModel.surveySID +".json")
+    .then(function(response) {
+      $scope._questions = response.data;
+    });
+  }
+
+  $scope.changeSurvey = function (surveyID){
+    $rootScope.$RequestServ = $http.get("api/questions/"+ surveyID +".json")
+    .then(function(response) {
+      $scope._questions = response.data;
+    });
+  }
+
+
+  $scope.totalScore = [];
+  for (var i = 0; i < 51; i++) {
+    var plusItem = {
+      id    : i,
+      value : i
+    };
+    $scope.totalScore.push(plusItem);
+  }
+
 
 });
