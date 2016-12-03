@@ -14,7 +14,7 @@
       "text": "Burj Khalifa"
     }
   ],
-  "questScore": 1,
+  "questScore": 4,
   "surveySID": "1",
   "questType": "1",
   "questTitle": "what's the tallest building in the world ?",
@@ -35,7 +35,7 @@
        "text": "Greece"
      }
    ],
-   "questScore": 1,
+   "questScore": 3,
    "surveySID": "1",
    "questType": "1",
    "questTitle": "What's the oldest country on earth ?",
@@ -56,7 +56,7 @@
       "text": "Elephants"
     }
   ],
-  "questScore": 1,
+  "questScore": 5,
   "surveySID": "1",
   "questType": "1",
   "questTitle": "What's the Tallest Animal in the World?",
