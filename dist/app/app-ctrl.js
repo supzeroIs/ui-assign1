@@ -11,6 +11,16 @@ UIASSIGN1.controller('mainCTRL', function($scope , $rootScope , $http ) {
       });
 
 });
+UIASSIGN1.controller('chartsCTRL', function($scope , $rootScope , $http ) {
+			// #dummy controller
+      $rootScope.sectorName = 'Mange survey status';
+
+      $rootScope.$RequestServ = $http.get("api/survey/users.json")
+      .then(function(response) {
+          $scope.totalusers = response.data;
+      });
+
+});
 
 
 

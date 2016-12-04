@@ -22,6 +22,12 @@ UIASSIGN1.config(function($stateProvider, $urlRouterProvider) {
     templateUrl : 'views/survey.html',
     controller  : 'surveyCTRL',
   });
+  $stateProvider
+  .state('charts', {
+    url: '/charts',
+    templateUrl : 'views/charts.html',
+    controller  : 'chartsCTRL',
+  });
 
 
   $stateProvider
@@ -48,6 +54,7 @@ UIASSIGN1.config(function($stateProvider, $urlRouterProvider) {
 }).run(function ($rootScope, $location) {
   $rootScope.$on("$stateChangeSuccess", function (event, toState, toParams, fromState, fromParams) {
     globalJS(toState.name);
+    $('.ui.sidebar').sidebar('hide');
   });
 });
 

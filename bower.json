@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "angular-animate": "^1.5.9",
-    "semantic-ui-calendar": "^0.0.4"
+    "semantic-ui-calendar": "^0.0.4",
+    "chart.js": "^2.4.0"
   }
 }

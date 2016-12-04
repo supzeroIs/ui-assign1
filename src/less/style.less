@@ -23,6 +23,7 @@ Brand Colors
 .pusher.site {
   .right.page {
     margin-left:260px;
+    
   }
 }
 .vertical.left.fixed.menu {
@@ -32,6 +33,7 @@ Brand Colors
 .button{
   box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
   &.fixed {
+    z-index: 9999999;
     position: fixed;
   }
   &.bottom {
@@ -77,6 +79,33 @@ Brand Colors
   }
 }
 }
+.dropdown.grid {
+  .avatar.image {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
 
+@media only screen and (min-device-width : 300px) and (max-device-width : 820px) {
+/* Styles */
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+  .pusher.site {
+    .right.page {
+      margin-left:0px !important;
+    }
+  }
+  .vertical.left.fixed.menu {
+    display: none !important;
+    width: 260px;
+  }
+  .searchInput {
+    display: none !important;
+  }
+  .popup {
+    .mini.image {
+      display:none !important;
+    }
+  }
+}
 /* #/home */
 @import "home";

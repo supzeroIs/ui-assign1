@@ -1,0 +1,181 @@
+<div class="ui form">
+  <div class="ui segment" id="target-survey">
+    <div class="two fields">
+
+      <div class="field" ng-class="{'error': targetForm.surveySID.$invalid && !targetForm.surveySID.$pristine}">
+        <label>Select survey </label>
+        <select  name="surveySID" id="surveySID"
+        required ng-model="targetMod.surveySID"  ng-required="true"
+        placeholder="survey name" ng-change="changeSurvey(targetMod.surveySID)" ng-init="targetMod.surveySID = _SID"
+        ng-options="value.id as value.value for value in surveyArray">
+        <option value="">--Select--</option>
+      </select>
+      <small ng-messages="targetForm.surveySID.$error">
+        <div ng-message="required">Please select a survey</div>
+      </small>
+    </div>
+
+    <div class="field" ng-class="{'error': targetForm.usergroup.$invalid && !targetForm.usergroup.$pristine}">
+      <label>Select user group </label>
+      <select name="usergroup" id="usergroup"
+      required ng-model="targetMod.usergroup"  ng-required="true"
+      placeholder="group" ng-change="changeSurvey(targetMod.usergroup)"
+      ng-options="value.id as value.value for value in userGroups">
+      <option value="">--Select--</option>
+    </select>
+    <small ng-messages="targetForm.usergroup.$error">
+      <div ng-message="required">Please select a group</div>
+    </small>
+  </div>
+</div>
+</div>
+
+
+<div class="ui two column grid">
+  <div class="column">
+    <div class="ui segment">
+      <h3 class="ui header">Survey progress <span class="right floated">1234 <span class="ui label blue">+7%</span></span></h3>
+      <canvas id="myChart" width="100%"></canvas>
+    </div>
+  </div>
+  <div class="column">
+    <div class="ui segment">
+      <h2 class="ui header">
+        <img src="/images/icons/plugin.png">
+        <div class="content">
+          Plug-ins
+          <div class="sub header">Check out our plug-in marketplace</div>
+        </div>
+      </h2>
+      <p class="ui"><b>starting Date :</b>12/2/2017
+        <span class="right floated"> <b>ending date : </b>13/2/2017</span>
+      </p>
+      <h4 class="ui header">
+        survey Details :
+      </h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+</div>
+<div class="ui one column grid">
+  <div class="column">
+    <div class="ui segments">
+      <div class="ui segment inverted red">
+        <h3 class="ui header">Accounting Dept</h3>
+      </div>
+      <div class="ui segment">
+        <div class="ui stackable two column grid">
+          <div class="ten wide column">
+            <div class="ui link divided items">
+              <div class="item">
+                <div class="ui tiny image">
+                  <img src="http://placehold.it/72x72">
+                </div>
+                <div class="content">
+                  <div class="header">Stevie Feliciano</div>
+                  <div class="description">
+                    <p>Team leader</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h4 class="header">Employees <div class="ui label right float">51</div></h4>
+            <div class="ui divider"></div>
+            <div>
+              <a class="ui teal image label">
+                <img src="http://semantic-ui.com/images/avatar/small/stevie.jpg">
+                Eliot
+              </a>
+              <a class="ui teal image label">
+                <img src="http://semantic-ui.com/images/avatar/small/stevie.jpg">
+                Veronika
+              </a>
+              <a class="ui teal image label">
+                <img src="http://semantic-ui.com/images/avatar/small/stevie.jpg">
+                Gerham
+              </a>
+              <a class="ui teal image label">
+                <img src="http://semantic-ui.com/images/avatar/small/stevie.jpg">
+                Gerham
+              </a>
+              <a class="ui teal image label">
+                <img src="http://semantic-ui.com/images/avatar/small/stevie.jpg">
+                Gerham
+              </a>
+            </div>
+          </div>
+          <div class="six wide column">
+            <canvas id="pie" width="100%" height="40"></canvas>
+            <h1 class="ui centered header">
+              total survey <span class="ui button green basic">Good</span>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- script -->
+<script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    datasets: [{
+      label: '# of Votes',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero:true
+        }
+      }]
+    }
+  }
+});
+// new one
+
+var ctx = document.getElementById("pie");
+var myChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: ["completed", "uncompleted", "rejected"],
+    datasets: [{
+      label: '# of Votes',
+      data: [60,20,20],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.7)',
+        'rgba(54, 162, 235, 0.7)',
+        'rgba(255, 206, 86, 0.7)',
+      ],
+
+    }]
+  },
+
+});
+</script>
+<!-- script -->
