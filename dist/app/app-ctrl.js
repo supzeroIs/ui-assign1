@@ -11,14 +11,41 @@ UIASSIGN1.controller('mainCTRL', function($scope , $rootScope , $http ) {
       });
 
 });
-UIASSIGN1.controller('chartsCTRL', function($scope , $rootScope , $http ) {
+UIASSIGN1.controller('chartsCTRL', function($scope , $rootScope , $state, $stateParams , $http ) {
 			// #dummy controller
       $rootScope.sectorName = 'Mange survey status';
+      $scope._SID                   = parseInt($stateParams.id);
 
-      $rootScope.$RequestServ = $http.get("api/survey/users.json")
+
+      /* fetch data */
+      $rootScope.$RequestServ = $http.get("api/survey/survey.json")
       .then(function(response) {
-          $scope.totalusers = response.data;
+        var totalSurv = response.data;
+        $scope.surveyArray = [];
+        for (var i = 0; i < totalSurv.length; i++) {
+          thisItem = totalSurv[i];
+          var plusItem = {
+            id    : thisItem._id,
+            value : thisItem.name
+          };
+          $scope.surveyArray.push(plusItem);
+        }
       });
+
+      $rootScope.$RequestServ = $http.get("api/users/groups.json")
+      .then(function(response) {
+        var totalGroups = response.data;
+        $scope.userGroups = [];
+        for (var i = 0; i < totalGroups.length; i++) {
+          thisItem = totalGroups[i];
+          var plusItem = {
+            id    : thisItem._id,
+            value : thisItem.name
+          };
+          $scope.userGroups.push(plusItem);
+        }
+      });
+
 
 });
 

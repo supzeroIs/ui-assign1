@@ -23,11 +23,6 @@ var configs = {
 }
 
 
-
-
-
-
-
 gulp.task('less', function () {
   return gulp.src('./src/less/**/*.less')
     .pipe(less({

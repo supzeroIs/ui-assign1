@@ -27,7 +27,8 @@
       <div ng-message="required">Please select a group</div>
     </small>
   </div>
-</div>
+
+  </div>
 </div>
 
 
@@ -41,10 +42,14 @@
   <div class="column">
     <div class="ui segment">
       <h2 class="ui header">
-        <img src="/images/icons/plugin.png">
+        <div class="image floated left">
+                          <canvas id="myDoughnutChart" class="myDough" ></canvas>
+        </div>
         <div class="content">
-          Plug-ins
-          <div class="sub header">Check out our plug-in marketplace</div>
+          Completed survey
+          <div class="sub header">
+            120 person
+          </div>
         </div>
       </h2>
       <p class="ui"><b>starting Date :</b>12/2/2017
@@ -76,6 +81,7 @@
                   <div class="description">
                     <p>Team leader</p>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -177,5 +183,27 @@ var myChart = new Chart(ctx, {
   },
 
 });
+var doughT = $('.myDough');
+var myDoughnutChart = new Chart(doughT, {
+    type: 'doughnut',
+    data: {
+      labels: ["completed","uncompeleted"],
+      datasets: [{
+        label: '% compelete',
+        data: [60,20],
+        backgroundColor: [
+          'green',
+          '#ccc',
+        ],
+
+      }]
+    },
+    options :{
+      legend : {
+        display:false,
+      }
+    }
+});
+
 </script>
 <!-- script -->
